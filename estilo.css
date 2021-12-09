@@ -1,0 +1,83 @@
+.foto{
+	border-radius:100%;
+	border: 1 px solid black;
+	max-width: 200px;
+	
+}
+body{
+	background-color:#b0b0ae;
+	
+}
+nav#menu{
+			display: block;
+		}
+		
+nav#menu ul{
+			list-style: none;
+			left: 750px;
+			
+		}
+.resumo{
+			
+			background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+
+	
+}
+.objetivo{
+			background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+	
+}
+.formacao{			
+		background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+						
+		}
+
+.experiencia{
+			background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+}
+
+.hobbies{
+	background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+
+}
+.atividadeExtra{
+	background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color:#fff;
+}
+
+.butao{	background-color: #606060;
+			padding: 10px;
+			margin: 10px;
+			transition: background-color 1s;
+			color: #fff
+}
+.butao:hover{
+			background-color: #ddd;
+			color: black;
+}
+	
+
+	
