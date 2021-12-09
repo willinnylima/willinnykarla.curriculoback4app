@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Curriculo Willinny karla </title>
+    <meta charset="utf-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="estilo.css"/>
+
+  </head>
+  <body onload="myFunction()">
+<div class="corpo">
+    <div class="row">
+		<div class="col-6 text-center">
+            <img class="foto" src="fotos.jpeg" >
+		<h1>Willinny Karla Lima</h1>
+		</div>	
+  
+	
+		<div class="col-6 text-center">
+	<ul id=primeira-lista>	<br><br><br>
+		<li class=resumo>Resumo</li>
+			<ul>
+			<li>Idade 26 Anos
+			<li>Solteira</li>
+			<li>Endereço: av conde da boa vista, número 100, Boa vista, Recife</li>
+		    <button class="butao" onclick="contato()">Contato</button>
+			</ul><br><br>	
+	<script>
+			
+	function myFunction() {
+	alert("Seja Bem Vindo!!");		
+}	
+
+function contato() {
+  document.getElementById("demo").innerHTML = "willinny@gmail.com";
+  document.getElementById("demo").innerHTML = "81997750931";
+}
+	</script>
+			</div>	
+		</div>
+	<nav id=menu>	
+			<li class=objetivo>Objetivo</li><br>
+			<p class= "p" id="btIr" ></p>  
+			<pre class= "p" id="tarefas"></pre>
+			<br><br>
+			
+		<li class=formacao>Formação</li>
+			<ul> <br>
+			<li>Tecnico em Desenvolvimento de Sistemas</li>
+			<p>Escola de Referencia Porto Digital - Concluido</p><br>
+			<li>Sistemas para Internet</li>
+			<p>UNICAP - Cursando 2º Periodo</p><br>
+			<li>Curso de JAVA para WEB</li>
+			<p>Rede cidadã - Concluido (90 horas)</p>
+			</ul></div>	<br><br>
+		<li class=experiencia>Experiencias</li><br>
+			<ul>
+			<li>MOBI - Assistente de Operação</li>
+			<p> 3 anos</p>
+			<li>ACCENTURE - Assistente de Desenvolvimento</li>
+			<p> 9 meses </p>
+			<li>ACCENTURE - Analista de Sistemas Junior</li>
+			<p> Atualmente</p>
+			</ul><br><br>
+		<li class=hobbies>Hobbies</li><br>
+			<ul>
+			<li>Leitura</li>
+			<li>Praia</li>
+			<li>Jogar</li>
+			</ul><br><br>
+		<li class=atividadeExtra>Atividades Extra Curriculares</li><br>
+			<ul>
+			<li>Monitora do curso de JAVA na Rede Cidadã</li>
+			<li>Voluntaria na ONG Justiceiras</li>
+			<li>Voluntaria no IMIP</li>
+			</ul><br><br>
+	</ul>
+	</nav>
+</div> 
+<script>
+Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+// Remember to inform BOTH the Back4App Application ID AND the JavaScript KEY
+Parse.initialize(
+  'kG77qZry95bCFCLmtQ6fIbmL3VI7GGGLX3sZnYCb', // This is your Application ID
+  'riJEnBMNq1pZbbel4p7Gbyj6PsTmjMsmiQPEVL5K' // This is your Javascript key
+);
+let demo = document.getElementById("demo");
+let demo = document.getElementById("demo");
+            let inputTarefa = document.getElementById("tarefa");
+            let btIr = document.getElementById("exp");
+            let listaTarefas = document.getElementById("tarefas");
+            let cbTarefasAFazer = document.getElementById("cbTarefasAFazer");
+
+            let tarefas;
+            let tarefasAFazer = false;
+
+            const adicionarTarefa = async() => {
+                let tarefa = inputTarefa.value.trim();
+                if (!tarefa) {
+                    alert("Digite uma tarefa!");
+                    return;
+                }
+                const novaTarefa = new Parse.Object("Tarefa");
+                novaTarefa.set("objetivo", tarefa);
+                try {
+                    const result = await novaTarefa.save();
+                    inputTarefa.value = "";
+                    inputTarefa.focus();
+                    console.log("Tarefa criada", result);
+                    consultarTarefas();
+                } catch (error) {
+                    console.error("Error ao criar Tarefa: ", error);
+                }
+            };
+
+            const consultarTarefas = async() => {
+                const Tarefa = Parse.Object.extend("Tarefa");
+                const query = new Parse.Query(Tarefa);
+                if (tarefasAFazer) {
+                    query.equalTo("feita", false);
+                }
+                listaTarefas.innerHTML = "";
+                try {
+                    tarefas = await query.find();
+                    console.log("tarefas", tarefas);
+                    for (let i = 0; i < tarefas.length; ++i) {
+                        const objetivo = tarefas[i].get("objetivo");
+                        const feita = tarefas[i].get("feita");
+                        console.log("feita", feita);
+                        listaTarefas.innerHTML += `<li>${objetivo}</li>`;
+                    }
+                } catch (error) {
+                    console.error("Error while fetching Tarefa", error);
+                }
+            };
+
+            const handleRemoverTarefa = async(indice) => {
+                try {
+                    await tarefas[indice].destroy();
+                    consultarTarefas();
+                } catch (error) {
+                    alert("Erro ao remover a tarefa: " + error.message);
+                }
+            };
+
+            const handleChangeTarefasAFazer = () => {
+                tarefasAFazer = cbTarefasAFazer.checked;
+                consultarTarefas();
+            };
+            consultarTarefas();
+</script>
+
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</html>
